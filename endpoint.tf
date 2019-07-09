@@ -13,6 +13,6 @@ resource "aws_vpc_endpoint" "s3" {
 
 resource "aws_vpc_endpoint_route_table_association" "s3" {
   count           = length(data.aws_route_tables.route_tables.ids)
-  route_table_id  = data.aws_route_tables.route_tables.id
+  route_table_id  = tolist(data.aws_route_tables.route_tables.ids)[count.index]
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
 }

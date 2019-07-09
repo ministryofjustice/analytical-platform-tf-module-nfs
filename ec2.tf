@@ -1,7 +1,7 @@
 
 
 data "aws_vpc" "selected" {
-  id = "${var.vpc_id}"
+  id = var.vpc_id
 }
 
 data "aws_ami" "occm_ami" {
@@ -15,20 +15,20 @@ data "aws_ami" "occm_ami" {
 }
 
 resource "aws_instance" "occm" {
-  ami                         = "${data.aws_ami.occm_ami.id}"
-  instance_type               = "${var.instance_type}"
-  key_name                    = "${var.key_pair}"
-  vpc_security_group_ids      = ["${aws_security_group.sec_grp.id}"]
-  subnet_id                   = "${var.subnet_id}"
+  ami                         = data.aws_ami.occm_ami.id
+  instance_type               = var.instance_type
+  key_name                    = var.key_pair
+  vpc_security_group_ids      = [aws_security_group.sec_grp.id]
+  subnet_id                   = var.subnet_id
   associate_public_ip_address = true
-  iam_instance_profile        = "${aws_iam_role.role.name}"
+  iam_instance_profile        = aws_iam_role.role.name
 
   tags = {
-    Name          = "${var.name}"
-    business-unit = "${var.tags["business-unit"]}"
-    application   = "${var.tags["application"]}"
-    is-production = "${var.tags["is-production"]}"
-    owner         = "${var.tags["owner"]}"
+    Name          = var.name
+    business-unit = var.tags["business-unit"]
+    application   = var.tags["application"]
+    is-production = var.tags["is-production"]
+    owner         = var.tags["owner"]
   }
 
   provisioner "local-exec" {
