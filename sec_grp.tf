@@ -1,6 +1,6 @@
 resource "aws_security_group" "sec_grp" {
-  name   = "${var.name}"
-  vpc_id = "${data.aws_vpc.selected.id}"
+  name   = var.name
+  vpc_id = data.aws_vpc.selected.id
 
   ingress {
     from_port   = 80
