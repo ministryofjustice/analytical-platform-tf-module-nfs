@@ -44,6 +44,11 @@ variable "profile" {
   description = "Name of local aws credentials profile"
 }
 
+variable "policy_path" {
+  description = "Path to IAM policy file for cloud manager"
+  default = "assets/iam_occm_policy.json"
+}
+
 variable "name" {
   default = "occm"
 }

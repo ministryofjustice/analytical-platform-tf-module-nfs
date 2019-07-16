@@ -1,5 +1,5 @@
 data "template_file" "policy" {
-  template = file("./iam_occm_policy.json")
+  template = file(var.policy_path)
 }
 
 data "aws_iam_policy_document" "assume_policy" {
