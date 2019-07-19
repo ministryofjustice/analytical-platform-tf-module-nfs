@@ -1,10 +1,3 @@
-provider "aws" {
-  region = var.region
-
-  profile = var.profile
-  version = "~> 2.10"
-}
-
 provider "template" {
   version = "~> 2.1"
 }
