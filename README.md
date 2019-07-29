@@ -59,3 +59,13 @@ internal_url = nfs-server.mojanalytics.xyz
 ip = 39.259.139.29
 url = occm.mojanalytics.xyz
 ```
+
+### Tests
+
+```bash
+terraform plan -out tfplan
+```
+
+```bash
+terraform show -json tfplan | jq . > ./tfjson.json
+```
